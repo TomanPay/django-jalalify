@@ -5,7 +5,7 @@ import pytz
 
 from django_jalalify import JalaliDatetime
 from django_jalalify.functions import convert_date_to_int, convert_time_to_int
-from django_jalalify.timezone import TEHRAN_ZONE, TehranTimezone
+from django_jalalify.timezone import TEHRAN_ZONE, TEHRAN_LMT_ZONE,  TehranTimezone
 
 
 def tehran_now() -> datetime: return datetime.now(pytz.timezone('Asia/Tehran'))
@@ -75,10 +75,10 @@ def jalali_datetime_to_int(jalali_datetime) -> Tuple:
     return date, time
 
 
-def convert_datetime_to_custom_jalali_date(date) -> int:
+def convert_datetime_to_custom_jalali_date(date_time: datetime) -> int:
     """
     Convert input date to Jalali integer date
     e.g: datetime(2023-03-29) => 1402/01/09 => 14020109
     """
-    date_in_jalali = JalaliDatetime(date).date().strftime(format_string="%Y%m%d")
+    date_in_jalali = JalaliDatetime(date_time.astimezone(TEHRAN_LMT_ZONE)).strftime(format_string="%Y%m%d")
     return convert_date_to_int(date_in_jalali)
