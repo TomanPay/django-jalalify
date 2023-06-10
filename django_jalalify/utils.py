@@ -23,7 +23,7 @@ def get_now_tehran_jalali_time_strftime(string_format="%H:%M:%S") -> str:
     return get_now_tehran_jalali_datetime().time().strftime(string_format)
 
 
-def get_now_tehran_jalali_date_intftime() -> str:
+def get_now_tehran_jalali_date_intftime() -> int:
     """
     convert today Jalali date as a integer date
     e.g: datetime(2023-03-29) => 1402/01/09 => 14020109
